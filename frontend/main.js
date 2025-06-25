@@ -20,7 +20,7 @@ function update() {}
 const game = new Phaser.Game(config);
 
 // --- SOCKET.IO ---
-const SERVER_URL = 'http://localhost:3000'; // поменяешь на свой сервер при деплое
+const SERVER_URL = 'https://noble-dispute.onrender.com';
 const socket = io(SERVER_URL);
 
 let playerProfile = JSON.parse(localStorage.getItem('playerProfile'));
