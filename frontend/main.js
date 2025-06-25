@@ -20,7 +20,7 @@ function update() {}
 const game = new Phaser.Game(config);
 
 // --- SOCKET.IO ---
-const SERVER_URL = 'https://noble-dispute.onrender.com';
+const SERVER_URL = 'https://noble-dispute.onrender.com'; // поменяешь на свой сервер при деплое
 const socket = io(SERVER_URL);
 
 let playerProfile = JSON.parse(localStorage.getItem('playerProfile'));
@@ -38,15 +38,15 @@ socket.on('connect', () => {
 });
 
 const FIELD = {
-  width: 800,
-  height: 600,
-  riverY: 270,
-  riverHeight: 60,
-  bridgeWidth: 80,
-  bridgeHeight: 60,
+  width: 720,
+  height: 1280,
+  riverY: 600,
+  riverHeight: 80,
+  bridgeWidth: 120,
+  bridgeHeight: 80,
   leftLaneX: 220,
-  rightLaneX: 580,
-  towerOffsetY: 60
+  rightLaneX: 500,
+  towerOffsetY: 100
 };
 
 const UNIT_SIZE = 32;
@@ -193,4 +193,16 @@ const GameScene = new Phaser.Class({
       if (unit && unit.preUpdate) unit.preUpdate();
     });
   }
-}); 
+});
+
+const config2 = {
+  type: Phaser.AUTO,
+  width: FIELD.width,
+  height: FIELD.height,
+  backgroundColor: '#222',
+  parent: 'game',
+  scene: [DeckScene, GameScene]
+};
+
+const game2 = new Phaser.Game(config2);
+game2.scene.start('Deck'); 
